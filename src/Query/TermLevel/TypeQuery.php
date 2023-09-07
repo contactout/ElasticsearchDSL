@@ -21,18 +21,12 @@ use ONGR\ElasticsearchDSL\BuilderInterface;
 class TypeQuery implements BuilderInterface
 {
     /**
-     * @var string
-     */
-    private $type;
-
-    /**
      * Constructor.
      *
      * @param string $type Type name
      */
-    public function __construct($type)
+    public function __construct(private $type)
     {
-        $this->type = $type;
     }
 
     /**

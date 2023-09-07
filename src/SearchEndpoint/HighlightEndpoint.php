@@ -22,7 +22,7 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * Endpoint name
      */
-    const NAME = 'highlight';
+    final public const NAME = 'highlight';
 
     /**
      * @var BuilderInterface
@@ -37,7 +37,7 @@ class HighlightEndpoint extends AbstractSearchEndpoint
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = []): float|array|\ArrayObject|bool|int|string|null
     {
         if ($this->highlight) {
             return $this->highlight->toArray();

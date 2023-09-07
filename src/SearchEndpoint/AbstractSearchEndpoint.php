@@ -25,7 +25,7 @@ abstract class AbstractSearchEndpoint extends AbstractNormalizable implements Se
     /**
      * @var BuilderInterface[]
      */
-    private $container = [];
+    private array $container = [];
 
     /**
      * {@inheritdoc}

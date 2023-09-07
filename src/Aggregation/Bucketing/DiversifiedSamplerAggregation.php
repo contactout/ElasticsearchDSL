@@ -53,11 +53,9 @@ class DiversifiedSamplerAggregation extends AbstractAggregation
     }
 
     /**
-     * @param mixed $shardSize
-     *
      * @return $this
      */
-    public function setShardSize($shardSize)
+    public function setShardSize(mixed $shardSize)
     {
         $this->shardSize = $shardSize;
 

@@ -26,7 +26,7 @@ class QueryEndpointTest extends \PHPUnit\Framework\TestCase
      */
     public function testItCanBeInstantiated()
     {
-        $this->assertInstanceOf('ONGR\ElasticsearchDSL\SearchEndpoint\QueryEndpoint', new QueryEndpoint());
+        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\SearchEndpoint\QueryEndpoint::class, new QueryEndpoint());
     }
 
     /**
@@ -46,7 +46,7 @@ class QueryEndpointTest extends \PHPUnit\Framework\TestCase
         $instance = new QueryEndpoint();
         /** @var NormalizerInterface|MockObject $normalizerInterface */
         $normalizerInterface = $this->getMockForAbstractClass(
-            'Symfony\Component\Serializer\Normalizer\NormalizerInterface'
+            \Symfony\Component\Serializer\Normalizer\NormalizerInterface::class
         );
 
         $this->assertNull($instance->normalize($normalizerInterface));

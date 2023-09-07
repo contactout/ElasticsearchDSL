@@ -84,11 +84,9 @@ class ScriptedMetricAggregation extends AbstractAggregation
     }
 
     /**
-     * @param mixed $initScript
-     *
      * @return $this
      */
-    public function setInitScript($initScript)
+    public function setInitScript(mixed $initScript)
     {
         $this->initScript = $initScript;
 
@@ -104,11 +102,9 @@ class ScriptedMetricAggregation extends AbstractAggregation
     }
 
     /**
-     * @param mixed $mapScript
-     *
      * @return $this
      */
-    public function setMapScript($mapScript)
+    public function setMapScript(mixed $mapScript)
     {
         $this->mapScript = $mapScript;
 
@@ -124,11 +120,9 @@ class ScriptedMetricAggregation extends AbstractAggregation
     }
 
     /**
-     * @param mixed $combineScript
-     *
      * @return $this
      */
-    public function setCombineScript($combineScript)
+    public function setCombineScript(mixed $combineScript)
     {
         $this->combineScript = $combineScript;
 
@@ -144,11 +138,9 @@ class ScriptedMetricAggregation extends AbstractAggregation
     }
 
     /**
-     * @param mixed $reduceScript
-     *
      * @return $this
      */
-    public function setReduceScript($reduceScript)
+    public function setReduceScript(mixed $reduceScript)
     {
         $this->reduceScript = $reduceScript;
 

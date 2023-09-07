@@ -23,15 +23,9 @@ class RangeAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
-    /**
-     * @var bool
-     */
-    private $keyed = false;
+    private bool $keyed = false;
 
     /**
      * Inner aggregations container init.
@@ -48,9 +42,9 @@ class RangeAggregation extends AbstractAggregation
         $this->setField($field);
         $this->setKeyed($keyed);
         foreach ($ranges as $range) {
-            $from = isset($range['from']) ? $range['from'] : null;
-            $to = isset($range['to']) ? $range['to'] : null;
-            $key = isset($range['key']) ? $range['key'] : null;
+            $from = $range['from'] ?? null;
+            $to = $range['to'] ?? null;
+            $key = $range['key'] ?? null;
             $this->addRange($from, $to, $key);
         }
     }
@@ -85,9 +79,7 @@ class RangeAggregation extends AbstractAggregation
                 'from' => $from,
                 'to' => $to,
             ],
-            function ($v) {
-                return !is_null($v);
-            }
+            fn($v) => !is_null($v)
         );
 
         if (!empty($key)) {

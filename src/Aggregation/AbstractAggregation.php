@@ -79,7 +79,6 @@ abstract class AbstractAggregation implements NamedBuilderInterface
     /**
      * Adds a sub-aggregation.
      *
-     * @param AbstractAggregation $abstractAggregation
      *
      * @return $this
      */

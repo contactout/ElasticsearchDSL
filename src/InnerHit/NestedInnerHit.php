@@ -31,17 +31,13 @@ class NestedInnerHit implements NamedBuilderInterface
      */
     private $path;
 
-    /**
-     * @var Search
-     */
-    private $search;
+    private ?\ONGR\ElasticsearchDSL\Search $search = null;
 
     /**
      * Inner hits container init.
      *
      * @param string $name
      * @param string $path
-     * @param Search $search
      */
     public function __construct($name, $path, Search $search = null)
     {
@@ -81,8 +77,6 @@ class NestedInnerHit implements NamedBuilderInterface
     }
 
     /**
-     * @param Search $search
-     *
      * @return $this
      */
     public function setSearch(Search $search)
@@ -123,16 +117,11 @@ class NestedInnerHit implements NamedBuilderInterface
      */
     private function getPathType()
     {
-        switch ($this->getType()) {
-            case 'nested':
-                $type = 'path';
-                break;
-            case 'parent':
-                $type = 'type';
-                break;
-            default:
-                $type = null;
-        }
+        $type = match ($this->getType()) {
+            'nested' => 'path',
+            'parent' => 'type',
+            default => null,
+        };
         return $type;
     }
 }

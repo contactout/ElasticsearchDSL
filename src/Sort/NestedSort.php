@@ -23,33 +23,17 @@ class NestedSort implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @var string
-     */
-    private $path;
-
-    /**
-     * @var BuilderInterface
-     */
-    private $filter;
-
-    /**
-     * @var BuilderInterface
-     */
-    private $nestedFilter;
+    private ?\ONGR\ElasticsearchDSL\BuilderInterface $nestedFilter = null;
 
     /**
      * @param string $path
      * @param BuilderInterface $filter
-     * @param array $parameters
      */
     public function __construct(
-        $path,
-        BuilderInterface $filter = null,
+        private $path,
+        private readonly ?\ONGR\ElasticsearchDSL\BuilderInterface $filter = null,
         array $parameters = []
     ) {
-        $this->path = $path;
-        $this->filter = $filter;
         $this->setParameters($parameters);
     }
 
@@ -110,8 +94,6 @@ class NestedSort implements BuilderInterface
     }
 
     /**
-     * @param BuilderInterface $nestedFilter
-     *
      * @return $this
      */
     public function setNestedFilter(BuilderInterface $nestedFilter)

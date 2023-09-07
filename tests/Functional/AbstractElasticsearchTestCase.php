@@ -21,17 +21,14 @@ abstract class AbstractElasticsearchTestCase extends TestCase
     /**
      * Test index name in the elasticsearch.
      */
-    const INDEX_NAME = 'elasticsaerch-dsl-test';
+    final public const INDEX_NAME = 'elasticsaerch-dsl-test';
 
-    /**
-     * @var Client
-     */
-    private $client;
+    private \Elasticsearch\Client $client;
 
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -109,7 +106,7 @@ abstract class AbstractElasticsearchTestCase extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         $this->deleteIndex();
@@ -143,7 +140,7 @@ abstract class AbstractElasticsearchTestCase extends TestCase
             foreach ($response['hits']['hits'] as $document) {
                 $documents[$document['_id']] = $document['_source'];
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return $documents;
         }
 
@@ -157,7 +154,7 @@ abstract class AbstractElasticsearchTestCase extends TestCase
     {
         try {
             $this->client->indices()->delete(['index' => self::INDEX_NAME]);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             // Do nothing.
         }
     }

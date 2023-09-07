@@ -24,17 +24,11 @@ class ScriptQuery implements BuilderInterface
     use ParametersTrait;
 
     /**
-     * @var string
-     */
-    private $script;
-
-    /**
      * @param string $script     Script
      * @param array  $parameters Optional parameters
      */
-    public function __construct($script, array $parameters = [])
+    public function __construct(private $script, array $parameters = [])
     {
-        $this->script = $script;
         $this->setParameters($parameters);
     }
 

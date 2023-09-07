@@ -54,7 +54,7 @@ class FunctionScoreQueryTest extends AbstractElasticsearchTestCase
         $search->addQuery($fquery);
         $results = $this->executeSearch($search);
 
-        $this->assertEquals(count($this->getDataArray()['product']), count($results));
+        $this->assertEquals(is_countable($this->getDataArray()['product']) ? count($this->getDataArray()['product']) : 0, count($results));
     }
 
     public function testScriptScore()

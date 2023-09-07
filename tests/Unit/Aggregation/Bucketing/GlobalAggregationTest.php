@@ -67,18 +67,17 @@ class GlobalAggregationTest extends \PHPUnit\Framework\TestCase
     public function testToArray($aggregation, $expectedResult)
     {
         $this->assertEquals(
-            json_encode($expectedResult),
-            json_encode($aggregation->toArray())
+            json_encode($expectedResult, JSON_THROW_ON_ERROR),
+            json_encode($aggregation->toArray(), JSON_THROW_ON_ERROR)
         );
     }
 
     /**
      * Test for setField method on global aggregation.
-     *
-     * @expectedException \LogicException
      */
-    public function testSetField()
+    public function testSetField(): never
     {
+        $this->expectException(\LogicException::class);
         $aggregation = new GlobalAggregation('test_agg');
         $aggregation->setField('test_field');
     }

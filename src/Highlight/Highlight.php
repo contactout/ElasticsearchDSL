@@ -24,16 +24,12 @@ class Highlight implements BuilderInterface
     /**
      * @var array Holds fields for highlight.
      */
-    private $fields = [];
+    private array $fields = [];
 
-    /**
-     * @var array
-     */
-    private $tags;
+    private ?array $tags = null;
 
     /**
      * @param string $name   Field name to highlight.
-     * @param array  $params
      *
      * @return $this
      */
@@ -47,8 +43,6 @@ class Highlight implements BuilderInterface
     /**
      * Sets html tag and its class used in highlighting.
      *
-     * @param array $preTags
-     * @param array $postTags
      *
      * @return $this
      */
@@ -82,7 +76,7 @@ class Highlight implements BuilderInterface
         $output = $this->processArray($output);
 
         foreach ($this->fields as $field => $params) {
-            $output['fields'][$field] = count($params) ? $params : new \stdClass();
+            $output['fields'][$field] = (is_countable($params) ? count($params) : 0) ? $params : new \stdClass();
         }
 
         return $output;

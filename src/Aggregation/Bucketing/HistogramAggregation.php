@@ -23,8 +23,8 @@ class HistogramAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    const DIRECTION_ASC = 'asc';
-    const DIRECTION_DESC = 'desc';
+    final public const DIRECTION_ASC = 'asc';
+    final public const DIRECTION_DESC = 'desc';
 
     /**
      * @var int
@@ -196,19 +196,20 @@ class HistogramAggregation extends AbstractAggregation
      *
      * @return $this
      */
-    public function setExtendedBounds($min = null, $max = null)
+    public function setExtendedBounds(?string $min = null, ?string $max = null)
     {
         $bounds = array_filter(
             [
                 'min' => $min,
                 'max' => $max,
             ],
-            'strlen'
+            'is_string'
         );
         $this->extendedBounds = $bounds;
 
         return $this;
     }
+
 
     /**
      * {@inheritdoc}
@@ -232,9 +233,7 @@ class HistogramAggregation extends AbstractAggregation
                 'keyed' => $this->isKeyed(),
                 'order' => $this->getOrder(),
             ],
-            function ($val) {
-                return ($val || is_numeric($val));
-            }
+            fn($val) => $val || is_numeric($val)
         );
         $this->checkRequiredParameters($out, ['field', 'interval']);
 

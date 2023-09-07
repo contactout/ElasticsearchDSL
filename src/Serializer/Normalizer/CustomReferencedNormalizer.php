@@ -18,15 +18,12 @@ use Symfony\Component\Serializer\Normalizer\CustomNormalizer;
  */
 class CustomReferencedNormalizer extends CustomNormalizer
 {
-    /**
-     * @var array
-     */
-    private $references = [];
+    private array $references = [];
 
     /**
      * {@inheritdoc}
      */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = []): float|array|\ArrayObject|bool|int|string|null
     {
         $object->setReferences($this->references);
         $data = parent::normalize($object, $format, $context);
@@ -38,7 +35,7 @@ class CustomReferencedNormalizer extends CustomNormalizer
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null): bool
     {
         return $data instanceof AbstractNormalizable;
     }

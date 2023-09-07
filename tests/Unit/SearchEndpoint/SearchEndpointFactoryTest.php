@@ -21,11 +21,10 @@ class SearchEndpointFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Tests get method exception.
-     *
-     * @expectedException \RuntimeException
      */
     public function testGet()
     {
+        $this->expectException(\RuntimeException::class);
         SearchEndpointFactory::get('foo');
     }
 
@@ -34,6 +33,7 @@ class SearchEndpointFactoryTest extends \PHPUnit\Framework\TestCase
      */
     public function testFactory()
     {
-        SearchEndpointFactory::get(AggregationsEndpoint::NAME);
+        $factory = SearchEndpointFactory::get(AggregationsEndpoint::NAME);
+        $this->assertInstanceOf(AggregationsEndpoint::class, $factory);
     }
 }

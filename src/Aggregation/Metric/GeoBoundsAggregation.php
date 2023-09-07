@@ -23,10 +23,7 @@ class GeoBoundsAggregation extends AbstractAggregation
 {
     use MetricTrait;
 
-    /**
-     * @var bool
-     */
-    private $wrapLongitude = true;
+    private bool $wrapLongitude = true;
 
     /**
      * Inner aggregations container init.

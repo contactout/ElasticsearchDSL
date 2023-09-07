@@ -23,18 +23,8 @@ class ConstantScoreQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    /**
-     * @var BuilderInterface
-     */
-    private $query;
-
-    /**
-     * @param BuilderInterface $query
-     * @param array            $parameters
-     */
-    public function __construct(BuilderInterface $query, array $parameters = [])
+    public function __construct(private readonly BuilderInterface $query, array $parameters = [])
     {
-        $this->query = $query;
         $this->setParameters($parameters);
     }
 

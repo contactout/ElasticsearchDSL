@@ -25,17 +25,13 @@ class SpanContainingQuery implements SpanQueryInterface
     /**
      * @param SpanQueryInterface
      */
-    private $little;
+    private \ONGR\ElasticsearchDSL\Query\Span\SpanQueryInterface $little;
 
     /**
      * @param SpanQueryInterface
      */
-    private $big;
+    private \ONGR\ElasticsearchDSL\Query\Span\SpanQueryInterface $big;
 
-    /**
-     * @param SpanQueryInterface $little
-     * @param SpanQueryInterface $big
-     */
     public function __construct(SpanQueryInterface $little, SpanQueryInterface $big)
     {
         $this->setLittle($little);
@@ -51,8 +47,6 @@ class SpanContainingQuery implements SpanQueryInterface
     }
 
     /**
-     * @param SpanQueryInterface $little
-     *
      * @return $this
      */
     public function setLittle(SpanQueryInterface $little)
@@ -71,8 +65,6 @@ class SpanContainingQuery implements SpanQueryInterface
     }
 
     /**
-     * @param SpanQueryInterface $big
-     *
      * @return $this
      */
     public function setBig(SpanQueryInterface $big)

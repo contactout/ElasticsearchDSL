@@ -24,22 +24,16 @@ class QueryEndpoint extends AbstractSearchEndpoint implements OrderedNormalizerI
     /**
      * Endpoint name
      */
-    const NAME = 'query';
+    public const NAME = 'query';
 
-    /**
-     * @var BoolQuery
-     */
-    private $bool;
+    private ?\ONGR\ElasticsearchDSL\Query\Compound\BoolQuery $bool = null;
 
-    /**
-     * @var bool
-     */
-    private $filtersSet = false;
+    private bool $filtersSet = false;
 
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = []): float|array|\ArrayObject|bool|int|string|null
     {
         if (!$this->filtersSet && $this->hasReference('filter_query')) {
             /** @var BuilderInterface $filter */

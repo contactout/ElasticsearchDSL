@@ -27,7 +27,7 @@ class SearchTest extends \PHPUnit\Framework\TestCase
      */
     public function testItCanBeInstantiated()
     {
-        $this->assertInstanceOf('ONGR\ElasticsearchDSL\Search', new Search());
+        $this->assertInstanceOf(\ONGR\ElasticsearchDSL\Search::class, new Search());
     }
 
     public function testScrollUriParameter()

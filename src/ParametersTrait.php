@@ -77,8 +77,6 @@ trait ParametersTrait
     }
 
     /**
-     * @param array $parameters
-     *
      * @return $this
      */
     public function setParameters(array $parameters)
@@ -91,7 +89,6 @@ trait ParametersTrait
     /**
      * Returns given array merged with parameters.
      *
-     * @param array $array
      *
      * @return array
      */
