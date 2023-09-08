@@ -37,7 +37,7 @@ class TopHitsAggregation extends AbstractAggregation
     /**
      * @var BuilderInterface[] How the top matching hits should be sorted.
      */
-    private $sorts = [];
+    private array $sorts = [];
 
     /**
      * Constructor for top hits.
@@ -158,9 +158,7 @@ class TopHitsAggregation extends AbstractAggregation
                 'size' => $this->getSize(),
                 'from' => $this->getFrom(),
             ],
-            function ($val) {
-                return (($val || is_array($val) || ($val || is_numeric($val))));
-            }
+            fn($val) => $val || is_array($val) || ($val || is_numeric($val))
         );
 
         return empty($output) ? new \stdClass() : $output;
@@ -174,17 +172,12 @@ class TopHitsAggregation extends AbstractAggregation
      */
     public function getSort()
     {
-        if (isset($this->sorts[0])) {
-            return $this->sorts[0];
-        }
-
-        return null;
+        return $this->sorts[0] ?? null;
     }
 
     /**
      * @deprecated sorts now is a container, use `addSort()`instead.
      *
-     * @param BuilderInterface $sort
      *
      * @return $this
      */

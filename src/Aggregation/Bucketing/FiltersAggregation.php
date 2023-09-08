@@ -27,12 +27,9 @@ class FiltersAggregation extends AbstractAggregation
     /**
      * @var BuilderInterface[]
      */
-    private $filters = [];
+    private array $filters = [];
 
-    /**
-     * @var bool
-     */
-    private $anonymous = false;
+    private bool $anonymous = false;
 
     /**
      * Inner aggregations container init.
@@ -68,11 +65,9 @@ class FiltersAggregation extends AbstractAggregation
     }
 
     /**
-     * @param BuilderInterface $filter
      * @param string           $name
      *
      * @throws \LogicException
-     *
      * @return FiltersAggregation
      */
     public function addFilter(BuilderInterface $filter, $name = '')

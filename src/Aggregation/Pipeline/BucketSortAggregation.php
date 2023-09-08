@@ -21,10 +21,7 @@ use ONGR\ElasticsearchDSL\Sort\FieldSort;
  */
 class BucketSortAggregation extends AbstractPipelineAggregation
 {
-    /**
-     * @var array
-     */
-    private $sort = [];
+    private array $sort = [];
 
     /**
      * @param string $name

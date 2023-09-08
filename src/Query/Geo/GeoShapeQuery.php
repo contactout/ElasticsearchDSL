@@ -23,19 +23,13 @@ class GeoShapeQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    const INTERSECTS = 'intersects';
-    const DISJOINT = 'disjoint';
-    const WITHIN = 'within';
-    const CONTAINS = 'contains';
+    final public const INTERSECTS = 'intersects';
+    final public const DISJOINT = 'disjoint';
+    final public const WITHIN = 'within';
+    final public const CONTAINS = 'contains';
 
-    /**
-     * @var array
-     */
-    private $fields = [];
+    private array $fields = [];
 
-    /**
-     * @param array $parameters
-     */
     public function __construct(array $parameters = [])
     {
         $this->setParameters($parameters);

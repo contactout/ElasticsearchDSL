@@ -24,24 +24,10 @@ class HasChildQuery implements BuilderInterface
     use ParametersTrait;
 
     /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var BuilderInterface
-     */
-    private $query;
-
-    /**
      * @param string           $type
-     * @param BuilderInterface $query
-     * @param array            $parameters
      */
-    public function __construct($type, BuilderInterface $query, array $parameters = [])
+    public function __construct(private $type, private readonly BuilderInterface $query, array $parameters = [])
     {
-        $this->type = $type;
-        $this->query = $query;
         $this->setParameters($parameters);
     }
 

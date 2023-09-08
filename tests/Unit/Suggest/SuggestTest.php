@@ -111,8 +111,6 @@ class SuggestTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @param Suggest $suggest
-     * @param array $expected
      *
      * @dataProvider getTestToArrayData()
      */

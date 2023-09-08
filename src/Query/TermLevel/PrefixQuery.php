@@ -24,24 +24,12 @@ class PrefixQuery implements BuilderInterface
     use ParametersTrait;
 
     /**
-     * @var string
-     */
-    protected $field;
-
-    /**
-     * @var string
-     */
-    protected $value;
-
-    /**
      * @param string $field      Field name.
      * @param string $value      Value.
      * @param array  $parameters Optional parameters.
      */
-    public function __construct($field, $value, array $parameters = [])
+    public function __construct(protected $field, protected $value, array $parameters = [])
     {
-        $this->field = $field;
-        $this->value = $value;
         $this->setParameters($parameters);
     }
 

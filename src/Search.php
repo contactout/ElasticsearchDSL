@@ -37,10 +37,8 @@ class Search
     /**
      * If you don’t need to track the total number of hits at all you can improve
      * query times by setting this option to false. Defaults to true.
-     *
-     * @var bool
      */
-    private $trackTotalHits;
+    private ?bool $trackTotalHits = null;
 
     /**
      * To retrieve hits from a certain offset. Defaults to 0.
@@ -144,10 +142,8 @@ class Search
      * URI parameters alongside Request body search.
      *
      * @link https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html
-     *
-     * @var array
      */
-    private $uriParams = [];
+    private array $uriParams = [];
 
     /**
      * While a search request returns a single “page” of results, the scroll API can be used to retrieve
@@ -160,15 +156,12 @@ class Search
      */
     private $scroll;
 
-    /**
-     * @var OrderedSerializer
-     */
-    private static $serializer;
+    private static ?\ONGR\ElasticsearchDSL\Serializer\OrderedSerializer $serializer = null;
 
     /**
      * @var SearchEndpointInterface[]
      */
-    private $endpoints = [];
+    private array $endpoints = [];
 
     /**
      * Constructor to initialize static properties
@@ -214,10 +207,8 @@ class Search
     /**
      * Adds query to the search.
      *
-     * @param BuilderInterface $query
      * @param string           $boolType
      * @param string           $key
-     *
      * @return $this
      */
     public function addQuery(BuilderInterface $query, $boolType = BoolQuery::MUST, $key = null)
@@ -259,7 +250,6 @@ class Search
     /**
      * Sets query endpoint parameters.
      *
-     * @param array $parameters
      *
      * @return $this
      */
@@ -274,7 +264,6 @@ class Search
      * Sets parameters to the endpoint.
      *
      * @param string $endpointName
-     * @param array  $parameters
      *
      * @return $this
      */
@@ -323,7 +312,6 @@ class Search
     /**
      * Sets post filter endpoint parameters.
      *
-     * @param array $parameters
      *
      * @return $this
      */
@@ -337,7 +325,6 @@ class Search
     /**
      * Adds aggregation into search.
      *
-     * @param AbstractAggregation $aggregation
      *
      * @return $this
      */
@@ -361,7 +348,6 @@ class Search
     /**
      * Adds inner hit into search.
      *
-     * @param NestedInnerHit $innerHit
      *
      * @return $this
      */
@@ -385,7 +371,6 @@ class Search
     /**
      * Adds sort to search.
      *
-     * @param BuilderInterface $sort
      *
      * @return $this
      */
@@ -486,8 +471,6 @@ class Search
     }
 
     /**
-     * @param bool $trackTotalHits
-     *
      * @return $this
      */
     public function setTrackTotalHits(bool $trackTotalHits)

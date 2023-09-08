@@ -11,17 +11,18 @@
         }
     ],
     "require": {
-        "php": "^7.0",
-        "symfony/serializer": "^3.0|^4.0",
+        "php": "^8.1",
+        "symfony/serializer": "^3.0|^4.0|^5.0|^6.0",
         "paragonie/random_compat": "*"
     },
     "require-dev": {
         "elasticsearch/elasticsearch": "^7.0",
-        "phpunit/phpunit": "~6.0",
-        "squizlabs/php_codesniffer": "^3.0"
+        "phpunit/phpunit": "^9.0",
+        "squizlabs/php_codesniffer": "^3.0",
+        "rector/rector": "dev-main"
     },
     "suggest": {
-      "elasticsearch/elasticsearch": "This library is for elasticsearch/elasticsearch client to enhance it with DSL functionality."
+        "elasticsearch/elasticsearch": "This library is for elasticsearch/elasticsearch client to enhance it with DSL functionality."
     },
     "autoload": {
         "psr-4": {

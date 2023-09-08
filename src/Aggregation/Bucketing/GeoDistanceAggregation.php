@@ -38,10 +38,7 @@ class GeoDistanceAggregation extends AbstractAggregation
      */
     private $unit;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
     /**
      * Inner aggregations container init.
@@ -60,8 +57,8 @@ class GeoDistanceAggregation extends AbstractAggregation
         $this->setField($field);
         $this->setOrigin($origin);
         foreach ($ranges as $range) {
-            $from = isset($range['from']) ? $range['from'] : null;
-            $to = isset($range['to']) ? $range['to'] : null;
+            $from = $range['from'] ?? null;
+            $to = $range['to'] ?? null;
             $this->addRange($from, $to);
         }
         $this->setUnit($unit);
@@ -77,11 +74,9 @@ class GeoDistanceAggregation extends AbstractAggregation
     }
 
     /**
-     * @param mixed $origin
-     *
      * @return $this
      */
-    public function setOrigin($origin)
+    public function setOrigin(mixed $origin)
     {
         $this->origin = $origin;
 
@@ -145,9 +140,7 @@ class GeoDistanceAggregation extends AbstractAggregation
                 'from' => $from,
                 'to' => $to,
             ],
-            function ($v) {
-                return !is_null($v);
-            }
+            fn($v) => !is_null($v)
         );
 
         if (empty($range)) {

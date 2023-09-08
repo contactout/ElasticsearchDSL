@@ -23,10 +23,7 @@ class Ipv4RangeAggregation extends AbstractAggregation
 {
     use BucketingTrait;
 
-    /**
-     * @var array
-     */
-    private $ranges = [];
+    private array $ranges = [];
 
     /**
      * Inner aggregations container init.
@@ -42,8 +39,8 @@ class Ipv4RangeAggregation extends AbstractAggregation
         $this->setField($field);
         foreach ($ranges as $range) {
             if (is_array($range)) {
-                $from = isset($range['from']) ? $range['from'] : null;
-                $to = isset($range['to']) ? $range['to'] : null;
+                $from = $range['from'] ?? null;
+                $to = $range['to'] ?? null;
                 $this->addRange($from, $to);
             } else {
                 $this->addMask($range);
@@ -66,9 +63,7 @@ class Ipv4RangeAggregation extends AbstractAggregation
                 'from' => $from,
                 'to' => $to,
             ],
-            function ($v) {
-                return !is_null($v);
-            }
+            fn($v) => !is_null($v)
         );
 
         $this->ranges[] = $range;

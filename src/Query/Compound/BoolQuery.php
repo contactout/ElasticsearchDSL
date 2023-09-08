@@ -23,20 +23,15 @@ class BoolQuery implements BuilderInterface
 {
     use ParametersTrait;
 
-    const MUST = 'must';
-    const MUST_NOT = 'must_not';
-    const SHOULD = 'should';
-    const FILTER = 'filter';
+    final public const MUST = 'must';
+    final public const MUST_NOT = 'must_not';
+    final public const SHOULD = 'should';
+    final public const FILTER = 'filter';
 
-    /**
-     * @var array
-     */
-    private $container = [];
+    private array $container = [];
 
     /**
      * Constructor to prepare container.
-     *
-     * @param array $container
      */
     public function __construct(array $container = [])
     {
@@ -68,11 +63,7 @@ class BoolQuery implements BuilderInterface
             return $queries;
         }
 
-        if (isset($this->container[$boolType])) {
-            return $this->container[$boolType];
-        }
-
-        return [];
+        return $this->container[$boolType] ?? [];
     }
 
     /**
@@ -107,7 +98,7 @@ class BoolQuery implements BuilderInterface
     public function toArray()
     {
         if (count($this->container) === 1 && isset($this->container[self::MUST])
-                && count($this->container[self::MUST]) === 1) {
+                && (is_countable($this->container[self::MUST]) ? count($this->container[self::MUST]) : 0) === 1) {
             $query = reset($this->container[self::MUST]);
 
             return $query->toArray();

@@ -114,9 +114,7 @@ class PercentilesAggregation extends AbstractAggregation
                 'field' => $this->getField(),
                 'script' => $this->getScript(),
             ],
-            function ($val) {
-                return ($val || is_numeric($val));
-            }
+            fn($val) => $val || is_numeric($val)
         );
 
         $this->isRequiredParametersSet($out);

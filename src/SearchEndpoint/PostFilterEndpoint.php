@@ -21,12 +21,12 @@ class PostFilterEndpoint extends QueryEndpoint
     /**
      * Endpoint name
      */
-    const NAME = 'post_filter';
+    final public const NAME = 'post_filter';
 
     /**
      * {@inheritdoc}
      */
-    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])
+    public function normalize(NormalizerInterface $normalizer, $format = null, array $context = []): float|array|\ArrayObject|bool|int|string|null
     {
         if (!$this->getBool()) {
             return null;

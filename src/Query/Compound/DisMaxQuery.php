@@ -26,12 +26,10 @@ class DisMaxQuery implements BuilderInterface
     /**
      * @var BuilderInterface[]
      */
-    private $queries = [];
+    private array $queries = [];
 
     /**
      * Initializes Dis Max query.
-     *
-     * @param array $parameters
      */
     public function __construct(array $parameters = [])
     {
@@ -41,7 +39,6 @@ class DisMaxQuery implements BuilderInterface
     /**
      * Add query.
      *
-     * @param BuilderInterface $query
      *
      * @return DisMaxQuery
      */

@@ -24,7 +24,7 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
     public function testItCanBeInstantiated()
     {
         $this->assertInstanceOf(
-            'ONGR\ElasticsearchDSL\SearchEndpoint\InnerHitsEndpoint',
+            \ONGR\ElasticsearchDSL\SearchEndpoint\InnerHitsEndpoint::class,
             new InnerHitsEndpoint()
         );
     }
@@ -35,7 +35,7 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
     public function testEndpointGetter()
     {
         $hitName = 'foo';
-        $innerHit = $this->getMockBuilder('ONGR\ElasticsearchDSL\BuilderInterface')->getMock();
+        $innerHit = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)->getMock();
         $endpoint = new InnerHitsEndpoint();
         $endpoint->add($innerHit, $hitName);
         $builders = $endpoint->getAll();
@@ -50,10 +50,10 @@ class InnerHitsEndpointTest extends \PHPUnit\Framework\TestCase
     public function testNormalization()
     {
         $normalizer = $this
-            ->getMockBuilder('Symfony\Component\Serializer\Normalizer\NormalizerInterface')
+            ->getMockBuilder(\Symfony\Component\Serializer\Normalizer\NormalizerInterface::class)
             ->getMock();
         $innerHit = $this
-            ->getMockBuilder('ONGR\ElasticsearchDSL\BuilderInterface')
+            ->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)
             ->setMethods(['getName', 'toArray', 'getType'])
             ->getMock();
         $innerHit->expects($this->any())->method('getName')->willReturn('foo');

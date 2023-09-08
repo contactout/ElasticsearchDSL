@@ -29,11 +29,6 @@ class MaxAggregation extends AbstractAggregation
     private $mode;
 
     /**
-     * @var array Defines how documents that are missing a value should be treated.
-     */
-    private $missing;
-
-    /**
      * Inner aggregations container init.
      *
      * @param string $name
@@ -41,13 +36,12 @@ class MaxAggregation extends AbstractAggregation
      * @param array $missing
      * @param string $mode
      */
-    public function __construct($name, $field, $missing = null, $mode = null)
+    public function __construct($name, $field, private $missing = null, $mode = null)
     {
         parent::__construct($name);
 
         $this->setField($field);
         $this->setMode($mode);
-        $this->missing = $missing;
     }
 
     /**

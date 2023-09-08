@@ -18,10 +18,7 @@ namespace ONGR\ElasticsearchDSL\Aggregation\Pipeline;
  */
 class PercentilesBucketAggregation extends AbstractPipelineAggregation
 {
-    /**
-     * @var array
-     */
-    private $percents;
+    private ?array $percents = null;
 
     /**
      * {@inheritdoc}
@@ -40,8 +37,6 @@ class PercentilesBucketAggregation extends AbstractPipelineAggregation
     }
 
     /**
-     * @param array $percents
-     *
      * @return $this
      */
     public function setPercents(array $percents)

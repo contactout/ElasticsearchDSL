@@ -21,13 +21,12 @@ class FiltersAggregationTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test if exception is thrown when not anonymous filter is without name.
-     *
-     * @expectedException \LogicException
-     * @expectedExceptionMessage In not anonymous filters filter name must be set.
      */
     public function testIfExceptionIsThrown()
     {
-        $mock = $this->getMockBuilder('ONGR\ElasticsearchDSL\BuilderInterface')->getMock();
+        $this->expectExceptionMessage("In not anonymous filters filter name must be set.");
+        $this->expectException(\LogicException::class);
+        $mock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)->getMock();
         $aggregation = new FiltersAggregation('test_agg');
         $aggregation->addFilter($mock);
     }
@@ -37,7 +36,7 @@ class FiltersAggregationTest extends \PHPUnit\Framework\TestCase
      */
     public function testFiltersAggregationGetArray()
     {
-        $mock = $this->getMockBuilder('ONGR\ElasticsearchDSL\BuilderInterface')->getMock();
+        $mock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)->getMock();
         $aggregation = new FiltersAggregation('test_agg');
         $aggregation->setAnonymous(true);
         $aggregation->addFilter($mock, 'name');
@@ -61,7 +60,7 @@ class FiltersAggregationTest extends \PHPUnit\Framework\TestCase
     public function testToArray()
     {
         $aggregation = new FiltersAggregation('test_agg');
-        $filter = $this->getMockBuilder('ONGR\ElasticsearchDSL\BuilderInterface')
+        $filter = $this->getMockBuilder(\ONGR\ElasticsearchDSL\BuilderInterface::class)
             ->setMethods(['toArray', 'getType'])
             ->getMockForAbstractClass();
         $filter->expects($this->any())
@@ -96,9 +95,9 @@ class FiltersAggregationTest extends \PHPUnit\Framework\TestCase
     public function testConstructorFilter()
     {
         /** @var BuilderInterface|\PHPUnit_Framework_MockObject_MockObject $builderInterface1 */
-        $builderInterface1 = $this->getMockForAbstractClass('ONGR\ElasticsearchDSL\BuilderInterface');
+        $builderInterface1 = $this->getMockForAbstractClass(\ONGR\ElasticsearchDSL\BuilderInterface::class);
         /** @var BuilderInterface|\PHPUnit_Framework_MockObject_MockObject $builderInterface2 */
-        $builderInterface2 = $this->getMockForAbstractClass('ONGR\ElasticsearchDSL\BuilderInterface');
+        $builderInterface2 = $this->getMockForAbstractClass(\ONGR\ElasticsearchDSL\BuilderInterface::class);
 
         $aggregation = new FiltersAggregation(
             'test',

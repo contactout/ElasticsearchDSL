@@ -18,23 +18,22 @@ class DateRangeAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Test if exception is thrown.
      *
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Date range aggregation must have field, format set and range added.
      */
     public function testIfExceptionIsThrownWhenNoParametersAreSet()
     {
+        $this->expectExceptionMessage("Date range aggregation must have field, format set and range added.");
+        $this->expectException(\LogicException::class);
         $agg = new DateRangeAggregation('test_agg');
         $agg->getArray();
     }
 
     /**
      * Test if exception is thrown when both range parameters are null.
-     *
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Either from or to must be set. Both cannot be null.
      */
     public function testIfExceptionIsThrownWhenBothRangesAreNull()
     {
+        $this->expectExceptionMessage("Either from or to must be set. Both cannot be null.");
+        $this->expectException(\LogicException::class);
         $agg = new DateRangeAggregation('test_agg');
         $agg->addRange(null, null);
     }
@@ -69,11 +68,11 @@ class DateRangeAggregationTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Data provider for testDateRangeAggregationConstructor.
+     * Data provider for dataDateRangeAggregationConstructorProvider.
      *
      * @return array
      */
-    public function testDateRangeAggregationConstructorProvider()
+    public function dataDateRangeAggregationConstructorProvider()
     {
         return [
             // Case #0. Minimum arguments.
@@ -110,14 +109,13 @@ class DateRangeAggregationTest extends \PHPUnit\Framework\TestCase
      *
      * @param string $field
      * @param string $format
-     * @param array  $ranges
      *
-     * @dataProvider testDateRangeAggregationConstructorProvider
+     * @dataProvider dataDateRangeAggregationConstructorProvider
      */
     public function testDateRangeAggregationConstructor($field = null, $format = null, array $ranges = null)
     {
         /** @var DateRangeAggregation|\PHPUnit_Framework_MockObject_MockObject $aggregation */
-        $aggregation = $this->getMockBuilder('ONGR\ElasticsearchDSL\Aggregation\Bucketing\DateRangeAggregation')
+        $aggregation = $this->getMockBuilder(\ONGR\ElasticsearchDSL\Aggregation\Bucketing\DateRangeAggregation::class)
             ->setMethods(['setField', 'setFormat', 'addRange'])
             ->disableOriginalConstructor()
             ->getMock();

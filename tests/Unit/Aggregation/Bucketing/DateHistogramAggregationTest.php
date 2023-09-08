@@ -21,10 +21,11 @@ class DateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests if ChildrenAggregation#getArray throws exception when expected.
      *
-     * @expectedException \LogicException
+     *
      */
     public function testGetArrayException()
     {
+        $this->expectException(\LogicException::class);
         $aggregation = new DateHistogramAggregation('foo');
         $aggregation->getArray();
     }
@@ -44,7 +45,7 @@ class DateHistogramAggregationTest extends \PHPUnit\Framework\TestCase
      */
     public function testChildrenAggregationGetArray()
     {
-        $mock = $this->getMockBuilder('ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation')
+        $mock = $this->getMockBuilder(\ONGR\ElasticsearchDSL\Aggregation\AbstractAggregation::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
         $aggregation = new DateHistogramAggregation('foo');

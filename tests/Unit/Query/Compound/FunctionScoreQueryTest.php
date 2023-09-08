@@ -59,15 +59,13 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests addRandomFunction method.
      *
-     * @param mixed $seed
      * @param array $expectedArray
-     *
      * @dataProvider addRandomFunctionProvider
      */
-    public function testAddRandomFunction($seed, $expectedArray)
+    public function testAddRandomFunction(mixed $seed, $expectedArray)
     {
         /** @var MatchAllQuery|MockObject $matchAllQuery */
-        $matchAllQuery = $this->getMockBuilder('ONGR\ElasticsearchDSL\Query\MatchAllQuery')->getMock();
+        $matchAllQuery = $this->getMockBuilder(\ONGR\ElasticsearchDSL\Query\MatchAllQuery::class)->getMock();
 
         $functionScoreQuery = new FunctionScoreQuery($matchAllQuery);
         $functionScoreQuery->addRandomFunction($seed);
@@ -81,7 +79,7 @@ class FunctionScoreQueryTest extends \PHPUnit\Framework\TestCase
     public function testAddFieldValueFactorFunction()
     {
         /** @var BuilderInterface|MockObject $builderInterface */
-        $builderInterface = $this->getMockForAbstractClass('ONGR\ElasticsearchDSL\BuilderInterface');
+        $builderInterface = $this->getMockForAbstractClass(\ONGR\ElasticsearchDSL\BuilderInterface::class);
         $functionScoreQuery = new FunctionScoreQuery($builderInterface);
         $functionScoreQuery->addFieldValueFactorFunction('field1', 2);
         $functionScoreQuery->addFieldValueFactorFunction('field2', 1.5, 'ln');
